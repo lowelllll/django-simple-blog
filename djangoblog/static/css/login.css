@@ -1,0 +1,45 @@
+*{
+	font-family: 'Quicksand', sans-serif;
+}
+#wrap{
+	background-color: #1e3b4f;
+}
+.login_div{
+	position: absolute;
+	width:25%;
+	height:350px;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+	background-color:#fff;
+	border-radius: 10px;
+	border-top: 5px solid #e76e91;
+}
+.login_div form{
+	width:100%;
+	height:100%;
+}
+.login_div table {
+	width:80%;
+	margin:0 auto;
+	text-align: center;
+	margin-top:80px;
+}
+table input{
+	width:80%;
+	height:45px;
+	margin-top:10px;
+	border:none;
+	background-color:#f3f5f7;
+	border-radius: 5px;
+	box-shadow: inset 0 2px 1px #eef0f2;
+}
+#submit_button{
+	background-color: #00cc6b;
+	box-shadow:  0 2px 0px #00b05c;
+	color:#fff;
+	font-size:16px;
+	cursor: pointer;
+}

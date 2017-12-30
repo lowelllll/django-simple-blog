@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}LOGIN{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/login.css' %}{% endblock %}
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+{% block content %}
+<div class="login_div">
+    <form action="." method="post"> {% csrf_token %}
+        {% if form.errors %}
+        <script>
+            alert("아이디나 패스워드가 틀립니다. 다시 입력해 주시길 바랍니다");
+        </script>
+        {% endif %}
+        <table align="center">
+            <tr>
+                <td><input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="ID"></td>
+            </tr>
+            <tr>
+                <td><input class="form-control" id="{{ form.password.id_for_label }}"  name="{{ form.password.html_name }}" type="password" placeholder="PASSWORD"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="LOGIN" id="submit_button"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}
