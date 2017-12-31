@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}LOGIN{% endblock %}
+{% block title %}SIGN IN{% endblock %}
 {% load staticfiles %}
 {% block extrastyle %}{% static 'css/login.css' %}{% endblock %}
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -14,13 +14,13 @@
         {% endif %}
         <table align="center">
             <tr>
-                <td><input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="ID"></td>
+                <td><input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="ID" required></td>
             </tr>
             <tr>
-                <td><input class="form-control" id="{{ form.password.id_for_label }}"  name="{{ form.password.html_name }}" type="password" placeholder="PASSWORD"></td>
+                <td><input class="form-control" id="{{ form.password.id_for_label }}"  name="{{ form.password.html_name }}" type="password" placeholder="PASSWORD" required></td>
             </tr>
             <tr>
-                <td><input type="submit" value="LOGIN" id="submit_button"></td>
+                <td><input type="submit" value="SIGN IN" id="submit_button"></td>
             </tr>
         </table>
     </form>

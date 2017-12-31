@@ -43,3 +43,9 @@ table input{
 	font-size:16px;
 	cursor: pointer;
 }
+#register-table{
+    margin-top:25px;
+}
+#register-div{
+    height:400px;
+}

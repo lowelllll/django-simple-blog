@@ -1,0 +1,44 @@
+*{
+	margin:0;
+	padding:0;
+	list-style: none;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+}
+.main a{
+    text-decoration: none;
+	display:inline-block;
+	width:150px;
+	height:40px;
+	font-size:22px;
+	border:1px solid #fff;
+	line-height:40px;
+	color:#fff;
+	cursor: pointer;
+	font-weight: 300;
+}
+.main a:hover {
+	transition: 0.3s;
+	background-color:#fff;
+	color:#eab9a8;
+
+}
+#wrap{
+	width:100%;
+	background-color:#eab9a8;
+	overflow:auto;
+}
+.main{
+	width:500px;
+	height:400px;
+	margin: 0 auto;
+	margin-top:10%;
+	text-align: center;
+	color:#fff;
+}
+h1{
+	font-size:200px;
+}
+.main p{
+	font-size:30px;
+}
