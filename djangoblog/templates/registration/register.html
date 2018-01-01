@@ -4,37 +4,37 @@
 {% block extrastyle %}{% static 'css/login.css' %}{% endblock %}
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 {% block content %}
-<div class="login_div" id="register-div">
-    <form action="." method="post"> {% csrf_token %}
-        {% if form.errors %}
-        <script>
-            alert("입력에 오류가 발생하였습니다. 다시 입력해 주시길 바랍니다.");
-        </script>
-        <p>{{ form.message.error }}</p>
-        {% endif %}
-        <table align="center" id="register-table">
-            <tr>
-                <td><input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="ID" required></td>
-            </tr>
-            <tr>
-                <td><input class="form-control" id="{{ form.password1.id_for_label }}"  name="{{ form.password1.html_name }}" type="password" placeholder="PASSWORD" required></td>
-            </tr>
-            <tr>
-                <td><input class="form-control" id="{{ form.password2.id_for_label }}"  name="{{ form.password2.html_name }}" type="password" placeholder="RE-PASSWORD" required></td>
-            </tr>
-            <tr>
-                <td><input class="form-control" id="{{ form.first_name.id_for_label }}"  name="{{ form.first_name.html_name }}" type="text" placeholder="FIRST_NAME" required></td>
-            </tr>
-            <tr>
-                <td><input class="form-control" id="{{ form.last_name.id_for_label }}"  name="{{ form.last_name.html_name }}" type="text" placeholder="LAST_NAME" required></td>
-            </tr>
-            <tr>
-                <td><input class="form-control" id="{{ form.email.id_for_label }}"  name="{{ form.email.html_name }}" type="email" placeholder="EMAIL" required></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="SIGN UP" id="submit_button"></td>
-            </tr>
-        </table>
-    </form>
-</div>
+<h1><a href="{% url 'index' %}">Olive</a></h1>
+		<form action="." method="post" class="register-form"> {% csrf_token %}
+            {% if form.errors %}
+            <script>
+                alert("입력에 오류가 발생하였습니다. 다시 입력해 주세요.");
+            </script>
+            {% endif %}
+			<table>
+				<tr>
+					<td>
+						<span>SIGN UP</span>
+					</td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="USERNAME" required></td>
+				</tr>
+				<tr>
+					<td><input type="password" class="form-control" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" placeholder="PASSWORD" required></td>
+				</tr>
+				<tr>
+					<td><input type="password" class="form-control" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" placeholder="CONFRIME PASSWORD" required></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}" placeholder="FIRST-NAME" required></td>
+				</tr>
+                <tr>
+					<td><input class="form-control" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}" placeholder="LAST-NAME" required></td>
+				</tr>
+				<tr>
+					<td><button type="submit">SIGN UP</button></td>
+				</tr>
+			</table>
+		</form>
 {% endblock %}

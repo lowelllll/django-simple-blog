@@ -6,23 +6,35 @@
 
 {% block content %}
 <div class="login_div">
-    <form action="." method="post"> {% csrf_token %}
+    <h1><a href="{% url 'index' %}">Olive</a></h1>
+    <form action="." method="post">{% csrf_token %}
         {% if form.errors %}
         <script>
-            alert("아이디나 패스워드가 틀립니다. 다시 입력해 주시길 바랍니다");
+            alert("아이디와 비밀번호를 다시 입력해 주시길 바랍니다.");
         </script>
         {% endif %}
-        <table align="center">
+        <table>
             <tr>
-                <td><input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="ID" required></td>
+                <td>
+                    <span>SIGN IN</span>
+                </td>
             </tr>
             <tr>
-                <td><input class="form-control" id="{{ form.password.id_for_label }}"  name="{{ form.password.html_name }}" type="password" placeholder="PASSWORD" required></td>
+                <td><input class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="USERNAME" required></td>
             </tr>
             <tr>
-                <td><input type="submit" value="SIGN IN" id="submit_button"></td>
+                <td><input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" placeholder="PASSWORD" required></td>
+            </tr>
+            <tr>
+                <td><button type="submit">SIGN IN</button></td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <a href="{% url 'register' %}">SIGN UP</a> &nbsp; <a href="">FOUND PASSWORD</a>
+                </td>
             </tr>
         </table>
+    </form>
     </form>
 </div>
 {% endblock %}
