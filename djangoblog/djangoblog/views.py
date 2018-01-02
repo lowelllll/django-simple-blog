@@ -12,5 +12,5 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('register_done')
 
 class UserCreateDone(TemplateView):
-    template_name='registration/register_doen.html'
+    template_name='registration/register_done.html'
 

@@ -5,14 +5,13 @@
     <title>{% block title %}{% endblock %}</title>
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/blog_base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% block extrastyle %}{% endblock %}">
 
 </head>
 <body>
 <div id="wrap">
     {% block content %}
-
     {% endblock %}
 </div>
 </body>
