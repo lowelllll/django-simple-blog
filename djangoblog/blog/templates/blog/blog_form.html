@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}CREATE BLOG{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/create-blog.css' %}{% endblock %}
+{% block content %}
+<header>
+    <nav>
+        <span>user|</span>
+        <span><a href="">logout</a></span>
+    </nav>
+</header>
+<section>
+    <article>
+        <h2>CREATE BLOG</h2>
+        <form action="." method="post" enctype="multipart/form-data"> {% csrf_token %}
+            {% if form.errors %}
+            <script>
+                alert("입력 오류가 발생했습니다. 다시 입력해 주십시오");
+            </script>
+            <p>{{ form.errors }}</p>
+            {% endif %}
+            <div>
+                <ul>
+                    <li><input class="form-control" name="{{ form.name.html_name }}" id="{{ form.name.id_for_label }}" placeholder="BLOG NAME" required></li>
+                    <li><input class="form-control" name="{{ form.description.html_name }}" id="{{ form.description.id_for_label }}" placeholder="DESCIPRION" required></li>
+                    <li><input type="file" class="form-control" name="{{ form.image.html_name }}" id="{{ form.image.for_label }}"></li>
+                </ul>
+            </div>
+            <div>
+                <button type="submit">CREATE</button>
+            </div>
+        </form>
+    </article>
+</section>
+<footer>
+</footer>
+{% endblock %}

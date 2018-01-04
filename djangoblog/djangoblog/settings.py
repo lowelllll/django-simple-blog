@@ -1,3 +1,4 @@
+# -*- coding:UTF-8 -*-
 """
 Django settings for djangoblog project.
 
@@ -123,4 +124,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
 # djangoblog/static
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/blog'
+
+MEDIA_URL = '/media/'
+# media 파일을 접근하기 위한 url 시작
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# 리스트 안에 넣으면 안됨.
+# 실제 파일이 위치하는 서버 상 경로 할당

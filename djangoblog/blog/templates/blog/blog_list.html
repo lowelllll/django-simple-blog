@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}OLIVE BLOG{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/blog-list.css'%}{% endblock %}
+{% block content %}
+	<header>
+			<div>
+					<span>{{ user }} |</span>
+					<span>
+                        {% if object_list %}
+                            {% for object in object_list %}
+                                {% if object.user == user %}
+                                    <a href=""> My Blog |</a>
+                                {% else %}
+                                    <a href=""> Make Blog |</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <a href="{% url 'blog:blog_create' %}"> Make Blog |</a>
+                        {% endif %}
+
+                    </span>
+                    <span><a href="{% url 'password_change' %}">Password Change |</a></span>
+                    <span><a href="{% url 'logout' %}"> Logout</a></span>
+
+			</div>
+		</header>
+		<section>
+			<article>
+				<h2>BLOG LIST</h2>
+				<ul>
+					{% for object in object_list %}
+						<a href="">
+							<li>
+								<img src="{{ object.image.url }}" alt="image">
+								<div>
+									<p>{{ object.name }}</p>
+									<p>{{ object.description }}</p>
+								</div>
+							</li>
+						</a>
+					{% endfor %}
+					<!--최대 4개 -->
+				</ul>
+			</article>
+		</section>
+		<footer>
+
+		</footer>
+{% endblock %}
