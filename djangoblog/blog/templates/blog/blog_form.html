@@ -5,8 +5,8 @@
 {% block content %}
 <header>
     <nav>
-        <span>user|</span>
-        <span><a href="">logout</a></span>
+        <span>{{ user }}</span>
+        <span><a href="{% url 'logout' %}">logout</a></span>
     </nav>
 </header>
 <section>

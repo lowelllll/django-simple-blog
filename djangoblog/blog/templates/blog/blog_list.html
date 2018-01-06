@@ -7,18 +7,7 @@
 			<div>
 					<span>{{ user }} |</span>
 					<span>
-                        {% if object_list %}
-                            {% for object in object_list %}
-                                {% if object.user == user %}
-                                    <a href=""> My Blog |</a>
-                                {% else %}
-                                    <a href=""> Make Blog |</a>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <a href="{% url 'blog:blog_create' %}"> Make Blog |</a>
-                        {% endif %}
-
+						<a href="{% url 'blog:blog_detail' user %}">My Blog |</a>
                     </span>
                     <span><a href="{% url 'password_change' %}">Password Change |</a></span>
                     <span><a href="{% url 'logout' %}"> Logout</a></span>
@@ -30,7 +19,7 @@
 				<h2>BLOG LIST</h2>
 				<ul>
 					{% for object in object_list %}
-						<a href="">
+						<a href="{% url 'blog:blog_detail' object.slug %}">
 							<li>
 								<img src="{{ object.image.url }}" alt="image">
 								<div>

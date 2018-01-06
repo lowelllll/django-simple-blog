@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.name }}{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/blog-detail.css' %}{% endblock %}
+{% block content %}
+<div id="inner-wrap">
+    <header>
+        <span><a href="{% url 'blog:index' %}">Home</a></span>
+        <h1>{{ object.name }}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'blog:post_list' object.slug %}">Content</a></li>
+                <li>Category</li>
+                <li>Tag</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article>
+            Content
+        </article>
+        <aside>
+            <div class="profile">
+                <div id="user-name">{{ object.user }}</div>
+                <div id="user-image"><img src="{{ object.image.url }}" alt=""></div>
+                <div id="blog-description">
+                    <p>{{ object.description }}</p>
+                </div>
+            </div>
+            <div id="etc">
+                <ul>
+                    <li><a href="">Search</a></li>
+                    <li>
+                        {% if object.user == user %}
+                            <a href="{% url 'blog:post_create' object.slug %}">Create Post</a>
+                        {% else %}
+                            <a href="">buddy add</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </section>
+    <footer>
+        z
+    </footer>
+</div>
+{% endblock %}

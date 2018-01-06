@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{ blog }}{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/blog_base.css' %}{% endblock %}
+{% block content %}
+{% if user == blog.user %}
+<div id="inner-wrap">
+    <header>
+        <span><a href="{% url 'blog:index' %}">Home</a></span>
+        <h1>{{ blog }}</h1>
+        <nav>
+            <ul>
+                <li>Content</li>
+                <li>Category</li>
+                <li>Tag</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article>
+            <form action="." method="post"> {% csrf_token %}
+                {{ object }} delete?
+                <input type="submit" value="Sure">
+            </form>
+        </article>
+    </section>
+    <footer>
+
+    </footer>
+</div>
+{% else %}
+<script> alert("잘못된 요청입니다."); history.back();
+</script>
+{% endif %}
+{% endblock %}

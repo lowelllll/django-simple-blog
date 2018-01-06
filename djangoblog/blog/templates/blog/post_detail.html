@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{{ blog }}{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/blog_base.css' %}{% endblock %}
+{% block content %}
+<div id="inner-wrap">
+    <header>
+        <span><a href="{% url 'blog:index' %}">Home</a></span>
+        <h1>{{ blog }}</h1>
+        <nav>
+            <ul>
+                <li>Content</li>
+                <li>Category</li>
+                <li>Tag</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article>
+            {{ object.title }} <br>
+            {{ object.user }} | {{ object.create_date|date:'y-m-d Ag' }}| {{ object.modify_date|date:'y-m-d Ag' }} <br>
+            {{ object.content }}
+            <hr>
+            <a href="{% url 'blog:post_delete' slug=blog.slug pk=object.id %}">delete</a> <a href="{% url 'blog:post_update' slug=blog.slug pk=object.id %}">update</a>
+            <div>
+                <form action="{% url 'blog:reple_add' %}" method="post"> {% csrf_token %}
+                    {{ user }} <input type="text" name="content" > >
+                    <input type="hidden" value="{{ object.id }}" name="post">
+                    <input type="submit" value="reple">
+                </form>
+            </div>
+        </article>
+    </section>
+    <footer>
+
+    </footer>
+</div>
+{% endblock %}
