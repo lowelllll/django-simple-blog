@@ -7,10 +7,10 @@
 <div id="inner-wrap">
     <header>
         <span><a href="{% url 'blog:index' %}">Home</a></span>
-        <h1>{{ blog }}</h1>
+        <h1><a href="{% url 'blog:blog_detail' blog.slug %}">{{ blog.name }}</a></h1>
         <nav>
             <ul>
-                <li>Content</li>
+                <li><a href="{% url 'blog:post_list' blog.slug %}">Content</a></li>
                 <li>Category</li>
                 <li>Tag</li>
             </ul>

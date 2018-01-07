@@ -10,7 +10,13 @@
         <nav>
             <ul>
                 <li><a href="{% url 'blog:post_list' object.slug %}">Content</a></li>
-                <li>Category</li>
+                <li>Category
+                    <ul class="dropdown">
+                        {% for category in categorys %}
+                        <li><a href="{% url 'blog:post_list_category' slug=object.slug pk=category.id %}">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
                 <li>Tag</li>
             </ul>
         </nav>

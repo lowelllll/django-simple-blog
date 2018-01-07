@@ -4,7 +4,10 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls.base import reverse
+from tagging.fields import TagField
 # Create your models here.
+
+
 
 @python_2_unicode_compatible
 class Blog(models.Model): # 유저 당 하나
@@ -25,6 +28,15 @@ class Blog(models.Model): # 유저 당 하나
 
 
 @python_2_unicode_compatible
+class Category(models.Model):
+    title = models.CharField(max_length=10)
+    Blog = models.SlugField(default='slug')
+
+    def __str__(self):
+        return self.title
+
+
+@python_2_unicode_compatible
 class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
@@ -32,6 +44,8 @@ class Post(models.Model):
     modify_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User)
     slug = models.SlugField(allow_unicode=True,default='slug')
+    category = models.ForeignKey(Category,null=True,blank=True)
+    tag = TagField() # blank= True
 
     class Meta :
         ordering = ['-create_date']
@@ -61,6 +75,13 @@ class Reple(models.Model):
         ordering = ['-create_date']
     def __str__(self):
         return self.content
+
+
+
+
+
+
+
 
 
 

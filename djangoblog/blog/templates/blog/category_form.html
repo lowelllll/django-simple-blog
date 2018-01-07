@@ -5,22 +5,23 @@
 {% block content %}
 {% if user == blog.user %}
 <div id="inner-wrap">
-     <header>
+    <header>
         <span><a href="{% url 'blog:index' %}">Home</a></span>
         <h1><a href="{% url 'blog:blog_detail' blog.slug %}">{{ blog.name }}</a></h1>
         <nav>
             <ul>
-                <li><a href="{% url 'blog:post_list' object.slug %}">Content</a></li>
-                <li>Category</li>
+                <li><a href="{% url 'blog:post_list' blog.slug %}">Content</a></li>
+                <li>Category
+                </li>
                 <li>Tag</li>
             </ul>
         </nav>
     </header>
     <section>
         <article>
-            <form action="." method="post"> {% csrf_token %}
-                {{ object }} delete?
-                <input type="submit" value="Sure">
+            <form action="." method="post">{% csrf_token %}
+                {{ form.as_table }}
+                <button type="submit">create</button>
             </form>
         </article>
     </section>
