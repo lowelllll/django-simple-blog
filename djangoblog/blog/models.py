@@ -45,6 +45,7 @@ class Post(models.Model):
     user = models.ForeignKey(User)
     slug = models.SlugField(allow_unicode=True,default='slug')
     category = models.ForeignKey(Category,null=True,blank=True)
+    image = models.ImageField(null=True)
     tag = TagField() # blank= True
 
     class Meta :

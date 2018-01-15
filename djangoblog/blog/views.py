@@ -17,8 +17,8 @@ from tagging.views import TaggedObjectList
 class BlogLV(LoginRequiredMixin,ListView):
     model = Blog
 
-    def get_queryset(self):
-        return Blog.objects.exclude(user=self.request.user)
+    # def get_queryset(self):
+    #     return Blog.objects.exclude(user=self.request.user)
 
 class BlogCV(LoginRequiredMixin,CreateView): # blog_form.html
     model = Blog
@@ -133,7 +133,7 @@ class CategoryCV(LoginRequiredMixin,CreateView):
 class TagTV(TemplateView): # 블로그 전체
     template_name = 'tagging/tagging_cloud.html'
 
-class PostTOL(TaggedObjectList):
+class PostTOL(TaggedObjectList): # 블로그 전체
     model = Post
     template_name = 'tagging/tagging_post_list.html'
 

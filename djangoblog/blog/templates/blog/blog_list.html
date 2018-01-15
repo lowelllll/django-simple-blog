@@ -8,6 +8,7 @@
 					<span>{{ user }} |</span>
 					<span>
 						<a href="{% url 'blog:blog_detail' user %}">My Blog |</a>
+						<a href="{% url 'blog:blog_create' %}">Create Blog |</a>
                     </span>
                     <span><a href="{% url 'password_change' %}">Password Change |</a></span>
                     <span><a href="{% url 'logout' %}"> Logout</a></span>
@@ -19,6 +20,7 @@
 				<h2>BLOG LIST</h2>
 				<ul>
 					{% for object in object_list %}
+						{% if object.user != user %}
 						<a href="{% url 'blog:blog_detail' object.slug %}">
 							<li>
 								<img src="{{ object.image.url }}" alt="image">
@@ -28,6 +30,7 @@
 								</div>
 							</li>
 						</a>
+					{% endif %}
 					{% endfor %}
 					<!--최대 4개 -->
 				</ul>

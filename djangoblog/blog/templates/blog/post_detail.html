@@ -20,6 +20,9 @@
             {{ object.title }} <br>
             {{ object.user }} | {{ object.create_date|date:'y-m-d Ag' }}| {{ object.modify_date|date:'y-m-d Ag' }} <br>
             {{ object.content }}
+            {% if object.image %}
+                <img src="{{ object.image.url }}" alt="">
+            {% endif %}
             <div>
                 TAG:
                 {% load tagging_tags %}

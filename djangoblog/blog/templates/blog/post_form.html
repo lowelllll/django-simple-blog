@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ blog }}{% endblock %}
 {% load staticfiles %}
-{% block extrastyle %}{% static 'css/blog_base.css' %}{% endblock %}
+{% block extrastyle %}{% static 'css/post_form.css' %}{% endblock %}
 {% block content %}
 {% if user == blog.user %}
 <div id="inner-wrap">
@@ -18,9 +18,36 @@
     </header>
     <section>
         <article>
-            <form action="." method="post">{% csrf_token %}
-                {{ form.as_table }}
-                <button type="submit">writing</button>
+            <form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
+                <form action="." method="post">
+		 				<table>
+		 				<tr>
+		 					<td><input id="id_title" maxlength="30" name="title" type="text" placeholder="TITLE" required /></td>
+		 				</tr>
+		 				<tr>
+		 					<td><textarea name="content" id="id_content" cols="30" rows="10" placeholder="CONTENT" style="resize: none" required></textarea>
+							</textarea></td>
+		 				</tr>
+		 				<tr>
+		 					<td>tag :<input id="id_tag" maxlength="255" name="tag" type="text" /></td>
+		 				</tr>
+		 				<tr>
+		 					<td><label for="id_image">IMAGE</label><input id="id_image" name="image" type="file" required /></td>
+		 				</tr>
+		 				<tr>
+		 					<td>CATEGORY :
+		 					<select id="id_category" name="category" class="i-can-add-my-own-attrs-now">
+                                {% for id, name in form.category.field.choices %}
+                                    <option value="{{ id }}">{{ name }}</option>
+                                {% endfor %}
+							</select>
+						</td>
+		 				</tr>
+		 				<tr>
+		 					<td><input type="submit" value="Create"></td>
+		 				</tr>
+		 			</table>
+		 			</form>
             </form>
         </article>
     </section>

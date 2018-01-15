@@ -23,7 +23,7 @@
                 <ul>
                     <li><input class="form-control" name="{{ form.name.html_name }}" id="{{ form.name.id_for_label }}" placeholder="BLOG NAME" required></li>
                     <li><input class="form-control" name="{{ form.description.html_name }}" id="{{ form.description.id_for_label }}" placeholder="DESCIPRION" required></li>
-                    <li><input type="file" class="form-control" name="{{ form.image.html_name }}" id="{{ form.image.for_label }}"></li>
+                    <li><label for="{{ form.image.id_for_label }}">image</label><input type="file" class="form-control" name="{{ form.image.html_name }}" id="{{ form.image.id_for_label }}"></li>
                 </ul>
             </div>
             <div>
