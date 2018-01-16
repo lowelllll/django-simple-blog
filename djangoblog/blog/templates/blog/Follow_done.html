@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Follow Done{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/done.css'%}{% endblock %}
+{% block content %}
+<h1><a href="{% url 'blog:index' %}">Olive</a></h1>
+		<div id="Thank">
+			<p>Follow Done!</p>
+			<p><a href="{% url 'blog:blog_detail' blog.slug %}">Go Blog</a></p>
+		</div>
+{% endblock %}

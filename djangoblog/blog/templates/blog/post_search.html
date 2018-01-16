@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Search{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/blog_base.css' %}{% endblock %}
+{% block content %}
+<div id="inner-wrap">
+    <header>
+        <span><a href="{% url 'blog:index' %}">Home</a></span>
+        <h1>{{ blog.name }}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'blog:post_list' blog.slug %}">Content</a></li>
+                <li>Category
+                    <ul class="dropdown">
+                        {% for category in categorys %}
+                        <li><a href="{% url 'blog:post_list_category' slug=blog.slug pk=category.id %}">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>Search</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article>
+            <form action="." method="post"> {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit">
+            </form>
+
+            {% if object_list %}
+            {% for post in object_list %}
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            {% endfor %}
+            {% elif search_term %}
+            Search Word {{ search_term }} Not Found!
+            {% endif %}
+        </article>
+    </section>
+    <footer>
+
+    </footer>
+</div>
+{% endblock %}

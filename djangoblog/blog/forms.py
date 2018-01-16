@@ -11,3 +11,5 @@ class PostForm(forms.ModelForm):
        super(PostForm, self).__init__(*args, **kwargs)
        self.fields['category'].queryset = Category.objects.filter(Blog=user)
 
+class PostSearchForm(forms.Form):
+    search_word = forms.CharField(label='Search Word')

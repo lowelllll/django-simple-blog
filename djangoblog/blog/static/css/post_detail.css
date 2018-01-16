@@ -1,0 +1,40 @@
+@import 'blog_base.css';
+article{
+			width:100%;
+			height:100%;
+		}
+		table{
+			width:80%;
+			margin:0 auto;
+			text-align: center;
+		}
+		tr:first-child a,tr:first-child{
+			height:50px;
+			color:#e9b8af;
+			font-size:18px;
+		}
+		tr:nth-child(2){
+			height:100px;
+			font-size:25px;
+		}
+		tr:nth-child(3){
+			height:70px;
+		}
+		tr:nth-child(4){
+			height:100px;
+			font-size:20px;
+			word-break:break_all
+		}
+		tr:last-child{
+			height:50px;
+		}
+		tr:last-child img{
+			width:450px;
+			height:350px;
+		}
+		span{
+			font-size:20px;
+		}
+		p:last-child{
+			margin-bottom:50px;
+		}

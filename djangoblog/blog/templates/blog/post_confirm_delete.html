@@ -12,7 +12,7 @@
             <ul>
                 <li><a href="{% url 'blog:post_list' object.slug %}">Content</a></li>
                 <li>Category</li>
-                <li>Tag</li>
+                <li><a href="{% url 'blog:search' object.slug %}">Search</a></li>
             </ul>
         </nav>
     </header>

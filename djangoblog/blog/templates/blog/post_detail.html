@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ blog }}{% endblock %}
 {% load staticfiles %}
-{% block extrastyle %}{% static 'css/blog_base.css' %}{% endblock %}
+{% block extrastyle %}{% static 'css/post_detail.css' %}{% endblock %}
 {% block content %}
 <div id="inner-wrap">
     <header>
@@ -10,29 +10,61 @@
         <nav>
             <ul>
                 <li><a href="{% url 'blog:post_list' blog.slug %}">Content</a></li>
-                <li>Category</li>
-                <li>Tag</li>
+                <li>Category
+                    <ul class="dropdown">
+                        {% for category in categorys %}
+                        <li><a href="{% url 'blog:post_list_category' slug=object.slug pk=category.id %}">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{% url 'blog:search' blog.slug %}">Search</a></li>
             </ul>
         </nav>
     </header>
     <section>
         <article>
-            {{ object.title }} <br>
-            {{ object.user }} | {{ object.create_date|date:'y-m-d Ag' }}| {{ object.modify_date|date:'y-m-d Ag' }} <br>
-            {{ object.content }}
-            {% if object.image %}
-                <img src="{{ object.image.url }}" alt="">
-            {% endif %}
-            <div>
-                TAG:
-                {% load tagging_tags %}
-                {% tags_for_object object as tags %}
-                {% for tag in tags %}
-                    <a href="{% url 'blog:tagged_object_list' slug=blog.slug tag=tag.name %}">{{ tag.name }}</a>
-                {% endfor %}
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        {% if object.category %}
+                            <a href="{% url 'blog:post_list_category' slug=object.slug pk=object.category.id %}">{{ object.category }}</a>
+                        {% else %}
+                        분류 없음
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td><h2>{{ object.title }}</h2></td>
+                </tr>
+                <tr>
+                    <td>{{ object.user }} | {{ object.create_date|date:'y-m-d Ag' }}| {{ object.modify_date|date:'y-m-d Ag' }}</td>
+                </tr>
+                <tr>
+                    <td>{{ object.content|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if object.image %}
+                        <img src="{{ object.image.url }}" alt="image">
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
             <hr>
-            <a href="{% url 'blog:post_delete' slug=blog.slug pk=object.id %}">delete</a> <a href="{% url 'blog:post_update' slug=blog.slug pk=object.id %}">update</a>
+            <p>
+                <span>tag:
+                    {% load tagging_tags %}
+                    {% tags_for_object object as tags %}
+                    {% for tag in tags %}
+                    <a href="{% url 'blog:tagged_object_list' slug=blog.slug tag=tag.name %}">{{ tag.name }}</a>
+                    {% endfor %}
+                </span>
+            </p>
+            <p>
+                {% if object.user == user %}
+                <a href="{% url 'blog:post_delete' slug=blog.slug pk=object.id %}">delete</a> <a href="{% url 'blog:post_update' slug=blog.slug pk=object.id %}">update</a>
+                {% endif %}
+            </p>
         </article>
     </section>
     <footer>

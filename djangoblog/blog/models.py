@@ -25,7 +25,8 @@ class Blog(models.Model): # 유저 당 하나
         # 생성된 날짜의 내림차순으로 정렬
     def __str__(self):
         return self.name
-
+    def get_absolute_url(self):
+        return reverse('blog:blog_detail',args=(self.slug,))
 
 @python_2_unicode_compatible
 class Category(models.Model):
@@ -45,7 +46,7 @@ class Post(models.Model):
     user = models.ForeignKey(User)
     slug = models.SlugField(allow_unicode=True,default='slug')
     category = models.ForeignKey(Category,null=True,blank=True)
-    image = models.ImageField(null=True)
+    image = models.ImageField(blank=True,null=True)
     tag = TagField() # blank= True
 
     class Meta :
@@ -55,11 +56,13 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:post_detail',args=(self.id,))
+        return reverse('blog:post_detail',kwargs={'slug':self.slug,'pk':self.id})
     # post.get_absolute_url args
     # 객체가 지칭하는 url 반환
+
     def get_previous_post(self):
         return self.get_previous_by_create_date()
+
     #create_date 기준으로 이전 포스트 반환
     # get_previous_by_column 내장객체 호출
     def get_next_post(self):
@@ -78,6 +81,10 @@ class Reple(models.Model):
         return self.content
 
 
+@python_2_unicode_compatible
+class Buddy(models.Model):
+    user = models.CharField(max_length=30)
+    buddy_user = models.CharField(max_length=30)
 
 
 

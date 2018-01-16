@@ -10,7 +10,7 @@
 <body>
 <h1>{{tag.name}}</h1>
 {% for object in object_list %}
-    <li><a href="">{{ object.title }}</a></li>
+    <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
 {% endfor %}
 </body>
 </html>

@@ -12,27 +12,43 @@
             <ul>
                 <li><a href="{% url 'blog:post_list' blog.slug %}">Content</a></li>
                 <li>Category</li>
-                <li>Tag</li>
+                <li><a href="{% url 'blog:search' blog.slug %}">Search</a></li>
             </ul>
         </nav>
     </header>
     <section>
         <article>
             <form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
-                <form action="." method="post">
+				{% if form.errors %}
+					<script>alert("오류가 발생했습니다.");</script>
+				{% endif %}
 		 				<table>
 		 				<tr>
-		 					<td><input id="id_title" maxlength="30" name="title" type="text" placeholder="TITLE" required /></td>
+		 					<td>
+								{% if object %}
+									<input id="id_title" maxlength="30" name="title" type="text" placeholder="TITLE" required value="{{ object.title }}"/></td>
+								{% else %}
+									<input id="id_title" maxlength="30" name="title" type="text" placeholder="TITLE" required /></td>
+								{% endif %}
 		 				</tr>
 		 				<tr>
-		 					<td><textarea name="content" id="id_content" cols="30" rows="10" placeholder="CONTENT" style="resize: none" required></textarea>
-							</textarea></td>
+		 					<td>
+								{% if object %}
+								<textarea name="content" id="id_content" cols="30" rows="10" placeholder="CONTENT" style="resize: none" required>{{ object.content }}</textarea></td>
+								{% else %}
+								<textarea name="content" id="id_content" cols="30" rows="10" placeholder="CONTENT" style="resize: none" required></textarea></td>
+								{% endif %}
+
 		 				</tr>
 		 				<tr>
-		 					<td>tag :<input id="id_tag" maxlength="255" name="tag" type="text" /></td>
+		 					<td>
+								tag :
+								{% if object %}
+								{% else %}
+								{% endif %}<input id="id_tag" maxlength="255" name="tag" type="text" value="{{ object.tag }}"/></td>
 		 				</tr>
 		 				<tr>
-		 					<td><label for="id_image">IMAGE</label><input id="id_image" name="image" type="file" required /></td>
+		 					<td><label for="id_image">IMAGE</label><input id="id_image" name="image" type="file" /></td>
 		 				</tr>
 		 				<tr>
 		 					<td>CATEGORY :
@@ -41,13 +57,19 @@
                                     <option value="{{ id }}">{{ name }}</option>
                                 {% endfor %}
 							</select>
+								&nbsp;<a href="{% url 'blog:category_create' blog.slug %}">Category Create</a>
 						</td>
 		 				</tr>
 		 				<tr>
-		 					<td><input type="submit" value="Create"></td>
+		 					<td>
+								{% if object %}
+								<input type="submit" value="Update">
+								{% else %}
+								<input type="submit" value="Create">
+								{% endif %}
+							</td>
 		 				</tr>
 		 			</table>
-		 			</form>
             </form>
         </article>
     </section>

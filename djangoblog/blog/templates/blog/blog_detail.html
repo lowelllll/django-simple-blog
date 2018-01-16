@@ -17,13 +17,13 @@
                         {% endfor %}
                     </ul>
                 </li>
-                <li>Tag</li>
+                <li><a href="{% url 'blog:search' object.slug %}">Search</a></li>
             </ul>
         </nav>
     </header>
     <section>
         <article>
-            Content
+
         </article>
         <aside>
             <div class="profile">
@@ -35,12 +35,19 @@
             </div>
             <div id="etc">
                 <ul>
-                    <li><a href="">Search</a></li>
+                    <li>
+                        <a href="">Follwer {{ follower }} | Follow {{ follow }}</a></li>
                     <li>
                         {% if object.user == user %}
                             <a href="{% url 'blog:post_create' object.slug %}">Create Post</a>
                         {% else %}
-                            <a href="">buddy add</a>
+                            {% if buddy %}
+                                <a href="#">My buddy</a>
+                            {% else %}
+                                <form action="{% url 'blog:follow' object.slug %}" method="post">{% csrf_token %}
+                                    <button type="submit">buddy Add</button>
+                                </form>
+                            {% endif %}
                         {% endif %}
                     </li>
                 </ul>
@@ -48,7 +55,7 @@
         </aside>
     </section>
     <footer>
-        z
+
     </footer>
 </div>
 {% endblock %}

@@ -1,0 +1,30 @@
+@import 'blog_base.css';
+article{
+			width:100%;
+			height:100%;
+		}
+		table{
+			width:100%;
+
+		}
+		td{
+			height:100px;
+		}
+		td:first-child{
+			width:90%;
+		}
+		td:nth-child(2){
+			text-align: center;
+		}
+		tr:hover{
+			box-shadow: 1px 1px 1px #eee;
+			cursor: pointer;
+		}
+		p{
+			margin-top:30px;
+			text-align: center;
+		}
+		p > a:hover{
+		    font-size:18px;
+		    transition:0.5s;
+		}
