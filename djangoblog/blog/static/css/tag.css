@@ -1,0 +1,54 @@
+*{
+			margin:0;
+			padding:0;
+			list-style: none;
+			font-family: 'Raleway', sans-serif;
+			font-weight: 100;
+
+		}
+		#wrap{
+			width:100%;
+			overflow:auto;
+			background-color:#eab9a8;
+		}
+
+		h1{
+			width:100px;
+			height:50px;
+			font-size:50px;
+			margin-left:2%;
+			margin-top:1%;
+		}
+		h2{
+			font-size:40px;
+			color:#fff;
+			width:500px;
+			height:50px;
+			margin:0 auto;
+			margin-top:230px;
+		}
+		h1 a{
+			color:#fff;
+			font-weight: 300;
+		}
+		a{
+			text-decoration: none;
+			color:#fff;
+		}
+		.tag-cloud{
+			width:500px;
+			height:300px;
+			position: absolute;
+			top:0;
+			bottom:0;
+			left:0;
+			right: 0;
+			margin:auto;
+			border:1px solid #fff;
+		}
+		.tag-1{font-size:18px;}
+		.tag-2{font-size:20px;}
+		.tag-3{font-size:22px;}
+		.tag-4{font-size:24px;}
+		.tag-5{font-size:26px;}
+		.tag-6{font-size:28px;}

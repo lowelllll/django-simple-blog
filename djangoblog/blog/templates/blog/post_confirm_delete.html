@@ -1,33 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}{{ blog }}{% endblock %}
 {% load staticfiles %}
-{% block extrastyle %}{% static 'css/blog_base.css' %}{% endblock %}
+{% block extrastyle %}{% static 'css/done.css'%}{% endblock %}
 {% block content %}
 {% if user == blog.user %}
-<div id="inner-wrap">
-     <header>
-        <span><a href="{% url 'blog:index' %}">Home</a></span>
-        <h1><a href="{% url 'blog:blog_detail' blog.slug %}">{{ blog.name }}</a></h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'blog:post_list' object.slug %}">Content</a></li>
-                <li>Category</li>
-                <li><a href="{% url 'blog:search' object.slug %}">Search</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section>
-        <article>
+<h1><a href="{% url 'blog:index' %}">Olive</a></h1>
+		<div id="Thank">
             <form action="." method="post"> {% csrf_token %}
-                {{ object }} delete?
-                <input type="submit" value="Sure">
+			<p>{{ object }} Delete?</p>
+			<p><button type="submit">Delete</button></p>
             </form>
-        </article>
-    </section>
-    <footer>
-
-    </footer>
-</div>
+		</div>
 {% else %}
 <script> alert("잘못된 요청입니다."); history.back();
 </script>

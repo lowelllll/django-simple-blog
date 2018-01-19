@@ -1,16 +1,41 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>{{tag.name}}</h1>
-{% for object in object_list %}
-    <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
-{% endfor %}
-</body>
-</html>
+{% extends 'base.html '%}
+{% block title %}#{{tag.name}}{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/tag_list.css '%}{% endblock %}
+{% block content %}
+<header>
+    <div>
+        <div>
+					<span>{{ user }} |</span>
+					<span>
+							<a href="{% url 'blog:blog_detail' user %}">My Blog |</a>
+
+                    </span>
+                    <span><a href="{% url 'password_change' %}">Password Change |</a></span>
+                    <span><a href="{% url 'logout' %}"> Logout</a></span>
+
+        </div>
+    </div>
+</header>
+<section>
+    <article>
+        <h2>#{{tag.name}}<a href="{% url 'blog:tag_cloud' %}">[TAG CLOUD]</a></h2>
+        <table>
+            {% for object in object_list %}
+            <tr>
+                <td>
+                    <a href="{{ object.get_absolute_url }}">{{ object.title }}</a>
+                </td>
+                <td>
+                    {{ object.user }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </article>
+</section>
+<footer>
+
+</footer>
+
+{% endblock %}

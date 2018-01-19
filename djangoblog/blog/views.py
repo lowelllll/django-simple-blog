@@ -15,15 +15,22 @@ from django.db.models import Q
 # Create your views here.
 
 
+class TagTV(TemplateView):
+    template_name = 'tagging/tagging_cloud.html'
+
 class BlogLV(LoginRequiredMixin,ListView):
     model = Blog
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(BlogLV,self).get_context_data(**kwargs)
+        context['flag'] = False
+        return context
     # def get_queryset(self):
     #     return Blog.objects.exclude(user=self.request.user)
 
 class BlogCV(LoginRequiredMixin,CreateView): # blog_form.html
     model = Blog
-    fields = ['name','description','image']
+    fields = ['name','description','image','blog_intro']
     success_url = reverse_lazy('blog:index')
 
     def form_valid(self, form): #오류
@@ -33,15 +40,14 @@ class BlogCV(LoginRequiredMixin,CreateView): # blog_form.html
 
 class BlogDV(LoginRequiredMixin,DetailView):
     model = Blog
-
     def get_context_data(self, **kwargs):
         context = super(BlogDV,self).get_context_data(**kwargs)
         context['categorys'] = Category.objects.filter(Blog=self.kwargs['slug'])
         try:
-            context['buddy'] = Buddy.objects.get(user=self.request.user,buddy_user=self.kwargs['slug'])
+            context['buddy'] = Buddy.objects.get(user=self.request.user, buddy_user=self.kwargs['slug'])
+            context['post'] = Post.objects.get(slug=self.object.slug)
         except:
-            pass
-
+            pass # context buddy가 없을 경우 이웃이 안되어있는 거임
         context['follow'] = Buddy.objects.filter(user=self.kwargs['slug']).count()
         context['follower'] = Buddy.objects.filter(buddy_user=self.kwargs['slug']).count()
         return context
@@ -153,9 +159,6 @@ class CategoryCV(LoginRequiredMixin,CreateView):
 
 # ========= TAG =============
 
-class TagTV(TemplateView): # 블로그 전체
-    template_name = 'tagging/tagging_cloud.html'
-
 class PostTOL(TaggedObjectList): # 블로그 전체
     model = Post
     template_name = 'tagging/tagging_post_list.html'
@@ -209,3 +212,4 @@ class FollowDone(TemplateView):
         context = super(FollowDone,self).get_context_data(**kwargs)
         context['blog'] = Blog.objects.get(slug=self.kwargs['slug'])
         return context
+

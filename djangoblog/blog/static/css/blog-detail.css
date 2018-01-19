@@ -5,7 +5,11 @@
 			height:100%;
 			margin-right:4%;
 			float:left;
-			background-color:#f7f7f9;
+			background-color:#fce1d8;
+		}
+		article img{
+		    width:100%;
+		    height:100%;
 		}
 		aside{
 			width:30%;

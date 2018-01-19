@@ -7,10 +7,16 @@
 			<div>
 					<span>{{ user }} |</span>
 					<span>
-						<a href="{% url 'blog:blog_detail' user %}">My Blog |</a>
+						{% for object in object_list %}
+						{% if object.user == user %}
+						<a href="{% url 'blog:blog_detail' user %}">My Blog|</a>
+						{{ "<!--" }}
+						{% endif %}
+						{% endfor %}
 						<a href="{% url 'blog:blog_create' %}">Create Blog |</a>
+						<span style="color:#fff">{{ "-->" }}</span>
                     </span>
-                    <span><a href="{% url 'password_change' %}">Password Change |</a></span>
+                    <span><a href="{% url 'password_change' %}"> Password Change | </a></span>
                     <span><a href="{% url 'logout' %}"> Logout</a></span>
 
 			</div>

@@ -23,12 +23,12 @@
     </header>
     <section>
         <article>
-
+            <img src="{{ object.blog_intro.url }}" alt="blog_intro">
         </article>
         <aside>
             <div class="profile">
                 <div id="user-name">{{ object.user }}</div>
-                <div id="user-image"><img src="{{ object.image.url }}" alt=""></div>
+                <div id="user-image"><img src="{{ object.image.url }}" alt="profile_img"></div>
                 <div id="blog-description">
                     <p>{{ object.description }}</p>
                 </div>
@@ -36,7 +36,7 @@
             <div id="etc">
                 <ul>
                     <li>
-                        <a href="">Follwer {{ follower }} | Follow {{ follow }}</a></li>
+                        <a href="#">Follwer {{ follower }} | Follow {{ follow }}</a></li>
                     <li>
                         {% if object.user == user %}
                             <a href="{% url 'blog:post_create' object.slug %}">Create Post</a>

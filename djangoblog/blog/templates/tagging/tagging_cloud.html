@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Tag Cloud{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static 'css/tag.css'%}{% endblock %}
+{% block content %}
+<h1><a href="{% url 'blog:index' %}">Olive</a></h1>
+        <h2>TAG CLOUD</h2>
+		<div class="tag-cloud">
+			{% load tagging_tags %}
+            {% tag_cloud_for_model blog.Post as tags with steps=6 min_count=1 distribution=log %}
+            <!--blog.Post  태그를 추출할 대상 as tags 태그리스트를 tags라는 템플릿 변수에 담음-->
+            <!--with steps= 6 min_count=1 태그 폰트범위 1~6 출력용 최소 사용 횟수 1-->
+            <!--distribution=log 태그폰트 크기를 할당할때 수학 알고리즘을 사용함-->
+            {% for tag in tags %}
+                <span class="tag-{{ tag.font_size }}">
+                    <a href="{% url 'blog:tagged_object_list' tag.name %}">{{ tag.name }}({{ tag.font_size }})</a>
+                </span>
+            {% endfor%}
+		</div>
+{% endblock %}

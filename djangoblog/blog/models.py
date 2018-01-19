@@ -14,6 +14,7 @@ class Blog(models.Model): # 유저 당 하나
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=30)
     image = models.ImageField(upload_to='blog/profile')
+    blog_intro = models.ImageField(upload_to='blog/intro',null=True)
     create_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True,allow_unicode=True)
     # 블로그 생성한 시각
@@ -46,7 +47,7 @@ class Post(models.Model):
     user = models.ForeignKey(User)
     slug = models.SlugField(allow_unicode=True,default='slug')
     category = models.ForeignKey(Category,null=True,blank=True)
-    image = models.ImageField(blank=True,null=True)
+    image = models.ImageField(blank=True,null=True,upload_to='blog/post')
     tag = TagField() # blank= True
 
     class Meta :
@@ -67,19 +68,6 @@ class Post(models.Model):
     # get_previous_by_column 내장객체 호출
     def get_next_post(self):
         return self.get_next_by_create_date()
-
-@python_2_unicode_compatible
-class Reple(models.Model):
-    content = models.TextField()
-    user = models.ForeignKey(User)
-    Post = models.IntegerField() # post_id
-    create_date = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-create_date']
-    def __str__(self):
-        return self.content
-
 
 @python_2_unicode_compatible
 class Buddy(models.Model):

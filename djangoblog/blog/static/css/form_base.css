@@ -1,0 +1,48 @@
+@import 'blog_base.css';
+article{
+			width:100%;
+			height:100%;
+		}
+		h2{
+			color:#e9b8af;
+			font-size:30px;
+		}
+		form{
+			width:500px;
+			height:50px;
+			margin-top:30px;
+
+		}
+		form input[type="text"]{
+			width:300px;
+			height:30px;
+			font-size:20px;
+		}
+		form input[type="submit"]{
+			width:100px;
+			height:35px;
+			background-color: #e9b8af;
+			border:none;
+			color:#fff;
+		}
+		span{
+		    color:#e9b8af;
+		    font-size:20px;
+		}
+		#blog{
+			width:100%;
+
+		}
+		#blog td{
+			height:100px;
+		}
+		#blog td:first-child{
+			width:90%;
+		}
+		#blog td:nth-child(2){
+			text-align: center;
+		}
+		#blog tr:hover{
+			box-shadow: 1px 1px 1px #eee;
+			cursor: pointer;
+		}

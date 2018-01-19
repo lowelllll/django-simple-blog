@@ -28,14 +28,17 @@ a{
 			margin:auto;
 		}
 		 #Thank{
-		 	font-size: 60px;
+		 	font-size: 40px;
 		 	text-align: center;
 		 	color:#fff;
 		 }
-		 #Thank p:nth-child(2){
+		 button{
 				font-size:30px;
+				border:none;
+				background:none;
+				color:#fff;
 		 }
-		 #Thank p:nth-child(2):hover{
+		 button:hover{
 		    font-size:32px;
 		    transition:0.3s;
 		 }

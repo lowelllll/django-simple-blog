@@ -56,7 +56,7 @@
                     {% load tagging_tags %}
                     {% tags_for_object object as tags %}
                     {% for tag in tags %}
-                    <a href="{% url 'blog:tagged_object_list' slug=blog.slug tag=tag.name %}">{{ tag.name }}</a>
+                    <a href="{% url 'blog:tagged_object_list' tag=tag.name %}">{{ tag.name }}</a>
                     {% endfor %}
                 </span>
             </p>
